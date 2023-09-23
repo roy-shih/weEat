@@ -1,110 +1,103 @@
-import Image from "next/image";
-import styles from "@/styles/page.module.css";
-import Link from "next/link";
 
-export default function Home({ title = "" }) {
+'use client';
+import { useState } from 'react';
+import {Swiper,SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import {CircularProgress} from "@nextui-org/react";
+import {Button} from "@nextui-org/react";
+function Home(props) {
+  // const [title, setTitle] = useState(props.title);
+  // rest of the code
+  const demo = [
+    {
+        name: "麥當勞",
+        money: 100,
+        unit: "NT",
+        category: "快餐",
+        rating: 4.5,
+        image: "https://picsum.photos/200/300",
+        selectNum: 60,
+        totalProviderNum: 50
+    },
+    {
+        name: "越南河粉",
+        money: 100,
+        unit: "NT",
+        category: "越南料理",
+        rating: 4.5,
+        image: "https://picsum.photos/200/300",
+        selectNum: 10,
+        totalProviderNum: 30
+    },
+    {
+        name: "麥當勞",
+        money: 100,
+        unit: "NT",
+        category: "快餐",
+        rating: 4.5,
+        image: "https://picsum.photos/200/300",
+        selectNum: 3,
+        totalProviderNum: 10
+    },
+]
+  const [data, setData] = useState(demo)
+  console.log(data)
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          <code className={styles.code}>next-pwa</code>
-          &nbsp;example on&nbsp;
-          <code className={styles.code}>{title}</code>
-          &nbsp;directory
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main className="min-h-[100vh] z-0 bg-white" style={{
+      marginTop: "53px"
+    }}>
+      <div className='flex flex-row justify-between py-3 px-4 bg-white text-black'>
+        <p className="">Tomorrow&apos;s Meal</p>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <Link className={styles.card} href="/" prefetch={false}>
-        <h2>
-          App dir <span>-&gt;</span>
-          <p>Home page using App directory with next-pwa.</p>
-        </h2>
-        </Link>
-        <Link className={styles.card} href="/test-pages" prefetch={false}>
-        <h2>
-          Pages dir <span>-&gt;</span>
-          <p>Test page using Pages directory with next-pwa.</p>
-        </h2>
-        </Link>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <Swiper className="mySwiper">
+        {demo.map((item, index) => (
+          <SwiperSlide key={index} className="min-h-[570px] w-[100%]  bg-white text-black">
+                {/* background image */}
+                <div className="w-[100%] h-[100%] flex flex-col items-center justify-center">
+                    <img src={item.image} alt="" className="w-[90%] h-[100%]  rounded-xl object-cover" />
+                </div>
+                {/* 右上角放星級，並重疊在上面的圖上 */}
+                <div className="absolute top-2 left-[35px]">
+                    <div className="w-[50px] h-[50px] rounded-full bg-white flex flex-row justify-center items-center">
+                        {/* <p className="text-black">
+                            {item.rating}
+                        </p> */}
+                          <CircularProgress 
+                            className='justify-start'
+                            size="lg"
+                            value={item.selectNum/item.totalProviderNum*100}
+                            color={item.selectNum/item.totalProviderNum*100>50?"success":"primary"}
+                            // formatOptions={{ style: "unit", unit: "kilometer" }}
+                            showValueLabel={true} 
+                          />
+                    </div>
+                </div>
+                {/* 下方文字，並重疊在上面的圖上 */}
+                <div className="absolute bottom-16 left-0 mx-10 w-[80%] max-h-[100px] flex flex-row justify-between pl-4 pr-2 py-3  bg-white rounded-lg">
+                    <div>
+                      <p className="text-black text-xl">{
+                          item.name
+                      }</p>
+                      <p className=" text-lg mt-2 text-blue-500">{
+                          item.unit+" "+item.money
+                      }</p>
+                    </div>
+                    <div className="flex flex-col justify-center items-center">
+                      
+                      <Button radius="full" className={`bg-gradient-to-tr ${item.selectNum<=item.totalProviderNum? 'from-pink-500 to-yellow-500 text-white shadow-lg':'from-purple-500 to-blue-500 text-white shadow-lg'} " size="lg`}>
+                      <div className="flex flex-col justify-center items-center">
+                        {item.selectNum>item.totalProviderNum? `Add to wish (${item.selectNum-item.totalProviderNum})`:`Queue (${item.selectNum}/${item.totalProviderNum})`}
+                        </div>
+                      </Button>
+                    </div>
+                    
+                </div>
+            </SwiperSlide>
+        ))}
+      </Swiper>   
+        
     </main>
   );
 }
+export default Home;

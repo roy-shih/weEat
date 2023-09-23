@@ -1,5 +1,5 @@
 'use client';
-import Home from "@/components/Home";
+import User from "@/components/User";
 import Bottonbar from "@/components/bottonbar";
 import Navbar from "@/components/navbar";
 import {NextUIProvider} from "@nextui-org/system";
@@ -9,7 +9,7 @@ export default function Page() {
     <NextUIProvider>
       <div className="h-screen">
       <Navbar />
-      <Home />
+      <User />
       <Bottonbar />
     </div>
   </NextUIProvider>
