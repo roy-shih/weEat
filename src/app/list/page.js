@@ -1,9 +1,9 @@
 'use client';
-import Home from "@/components/Home";
 import Bottonbar from "@/components/bottonbar";
 import Navbar from "@/components/navbar";
 import {NextUIProvider} from "@nextui-org/system";
 import Landing from "@/components/landing";
+import List from "@/components/list";
 
 export default function Page() {
   return (
@@ -14,7 +14,8 @@ export default function Page() {
       
       <div className="max-h-screen overflow-hidden bg-white  block md:hidden">
       <Navbar />
-      <Home />
+      <List />
+      <div className="h-[100px]"></div>
       <Bottonbar />
     </div>
   </NextUIProvider>

@@ -42,17 +42,16 @@ function Home(props) {
     },
 ]
   const [data, setData] = useState(demo)
-  console.log(data)
   return (
-    <main className="min-h-[100vh] z-0 bg-white" style={{
-      marginTop: "53px"
+    <main className="min-h-fit z-0 bg-white" style={{
+      paddingTop: "53px"
     }}>
       <div className='flex flex-row justify-between py-3 px-4 bg-white text-black'>
         <p className="">Tomorrow&apos;s Meal</p>
       </div>
       <Swiper className="mySwiper">
         {demo.map((item, index) => (
-          <SwiperSlide key={index} className="min-h-[570px] w-[100%]  bg-white text-black">
+          <SwiperSlide key={index} className="min-h-[70vh] w-[100%]  bg-white text-black">
                 {/* background image */}
                 <div className="w-[100%] h-[100%] flex flex-col items-center justify-center">
                     <img src={item.image} alt="" className="w-[90%] h-[100%]  rounded-xl object-cover" />
@@ -74,7 +73,7 @@ function Home(props) {
                     </div>
                 </div>
                 {/* 下方文字，並重疊在上面的圖上 */}
-                <div className="absolute bottom-16 left-0 mx-10 w-[80%] max-h-[100px] flex flex-row justify-between pl-4 pr-2 py-3  bg-white rounded-lg">
+                <div className="absolute bottom-20 left-0 mx-10 w-[80%] max-h-[100px] flex flex-row justify-between pl-4 pr-2 py-3  bg-white rounded-lg">
                     <div>
                       <p className="text-black text-xl">{
                           item.name

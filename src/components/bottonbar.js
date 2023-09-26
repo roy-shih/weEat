@@ -21,7 +21,7 @@ function Bottonbar() {
         </Link>
         {/* icon */}
         <div className="flex flex-col justify-center items-center">
-            <Link className="w-[40px] h-[40px] rounded-full bg-orange-400 flex flex-row " href="">
+            <Link className="w-[40px] h-[40px] rounded-full bg-orange-400 flex flex-row " href="/list">
                 <IconLocationFood className="w-[25px] h-[25px] text-white m-auto" />
             </Link>
         </div>
